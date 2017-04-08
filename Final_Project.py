@@ -1,5 +1,9 @@
 import random
 
+#Global Variables
+colors = {0 : 'RED', 1 : 'YELLOW', 2 : 'BLUE', 3 : 'GREEN', 4 : 'BLACK', 5 : 'WHITE'}
+
+#Difficult Option
 def selectDifficult():
   difficulty = 0
   
@@ -14,19 +18,21 @@ def selectDifficult():
     
   return difficulty
   
+#Code Generator
 def generateMaster(mainCode, numBeads, colors):
   for x in range(0, numBeads):
     bead = random.randrange(0, 6, 1)
     mainCode.append(colors[bead])
   
+#Main Function
 def masterMind():
 
   mainCode = []
-  colors = {0 : 'RED', 1 : 'YELLOW', 2 : 'BLUE', 3 : 'GREEN', 4 : 'BLACK', 5 : 'WHITE'}
   numBeads = selectDifficult()
   
   generateMaster(mainCode, numBeads, colors)
     
   print(mainCode)
   
+#Static Call of Main
 masterMind()

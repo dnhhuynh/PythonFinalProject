@@ -14,15 +14,18 @@ def selectDifficult():
     
   return difficulty
   
+def generateMaster(mainCode, numBeads, colors):
+  for x in range(0, numBeads):
+    bead = random.randrange(0, 6, 1)
+    mainCode.append(colors[bead])
+  
 def masterMind():
 
   mainCode = []
-  color = {0 : 'RED', 1 : 'YELLOW', 2 : 'BLUE', 3 : 'GREEN', 4 : 'BLACK', 5 : 'WHITE'}
+  colors = {0 : 'RED', 1 : 'YELLOW', 2 : 'BLUE', 3 : 'GREEN', 4 : 'BLACK', 5 : 'WHITE'}
   numBeads = selectDifficult()
   
-  for x in range(0, numBeads):
-    bead = random.randrange(0, 6, 1)
-    mainCode.append(color[bead])
+  generateMaster(mainCode, numBeads, colors)
     
   print(mainCode)
   

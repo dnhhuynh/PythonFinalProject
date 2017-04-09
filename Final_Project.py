@@ -51,3 +51,34 @@ def masterMind():
   
 #Static Call of Main
 masterMind()
+
+#----------------------------------SCORE TURN--------------------------------------------
+#Takes two parameters: secret code and guess code and returns a string containing the score
+def scoreTurn(cLst, gLst):
+    unusedLst = []
+    scoreLst = []
+    colors = ['R', 'G', 'B', 'W', 'Y', 'P']
+    ln = len(cLst)
+
+    for i in range(0, ln):
+        unusedLst.append(gLst[i])
+        scoreLst.append(cLst[i])
+    
+    for b1 in range(0, ln):
+        if scoreLst[b1] == unusedLst[b1]:
+            scoreLst[b1] = 'b'
+            unusedLst[b1] = ''
+            
+    for w1 in range(0, ln):        
+        for w2 in range(0, ln):
+            if scoreLst[w1] == unusedLst[w2]:
+                scoreLst[w1] = 'w'
+                unusedLst[w2] = ''
+
+    for i in range(0, 6):
+        while colors[i] in scoreLst: scoreLst.remove(colors[i])   
+        
+    scoreLst.sort()    
+       
+    scoreStr = ''.join(map(str, scoreLst))
+    return scoreStr

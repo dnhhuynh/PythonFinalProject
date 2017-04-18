@@ -174,7 +174,7 @@ def createBoard(difficulty):
 def masterMind():
   #Variables
   mainCode = []                    #List variable to hold master code
-  rspdCode = []                    #List variable to hold user response
+  rspdCode = ''                    #List variable to hold user response
   numBeads = selectDifficult()     #Variable to hold number of beads in code
   round = 1
   endGame = false
@@ -184,12 +184,14 @@ def masterMind():
   screen = createBoard(numBeads)
   show(screen)
   
-  while (endGame == false):
-    #Norma's function
+  while (endGame == false):  #Norma condition for max round (10) 
+    #Norma's request string #Norma(test string length)
     fillPeg(screen, round, mainCode)
     indicators = scoreTurn(rspdCode, mainCode)
     fillSmallPeg(screen, round, indicators, numBeads)
     round += 1 
-  
+    #Norma if statement checking the answer, if answer end loop, 
+ #Norma if exceded tries, you loose   
+    
 #Static Call of Main
 masterMind()

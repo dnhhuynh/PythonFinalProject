@@ -1,0 +1,57 @@
+def test():
+  grey=makeColor(192,192,192)
+  screen=makeEmptyPicture(600,800,grey)
+  selection=requestString("Enter color: ")
+ # easyLayout(screen)
+ # mediumLayout(screen)
+  hardLayout(screen)
+  solution(screen,blue)
+
+  
+  if selection == "red":
+        fillPeg(screen,25,90,red) 
+
+def fillPeg(screen,row,colmn,color):
+  addOvalFilled(screen,row,colmn,40,40,color)
+
+def easyLayout(screen):
+  #grey=makeColor(192,192,192)
+  #screen=makeEmptyPicture(400,800,grey)
+  for x in range(0,4):
+   for y in range(0,10):
+     addOvalFilled(screen, 20+x*60, 85+y*60, 50, 50, black)
+     addOvalFilled(screen, 270+x*30,100+y*60, 25, 25, black)
+  addLine(screen, 265, 80, 265, 680)
+  addLine(screen, 0, 80, 600, 80)
+  addLine(screen, 0,680, 600,680)
+  show(screen)
+  
+def mediumLayout(screen):
+  #grey=makeColor(192,192,192)
+  #screen=makeEmptyPicture(500,800,grey)  
+  for x in range(0,5):
+   for y in range(0,10):
+     addOvalFilled(screen, 20+x*60,85+y*60, 50, 50, black)
+     addOvalFilled(screen, 340+x*30,100+y*60, 25, 25, black)
+  addLine(screen, 325, 80, 325, 680)
+  addLine(screen, 0, 80, 600, 80)
+  addLine(screen, 0,680, 600,680)
+  show(screen)
+  
+def hardLayout(screen): 
+  #grey=makeColor(192,192,192)
+  #screen=makeEmptyPicture(600,800,grey)
+  for x in range(0,6):
+   for y in range(0,10):
+     addOvalFilled(screen, 20+x*60,85+y*60, 50, 50, black)
+     addOvalFilled(screen, 400+x*30,100+y*60, 25, 25, black)
+  addLine(screen, 385, 80, 385, 680)
+  addLine(screen, 0, 80, 600, 80)
+  addLine(screen, 0,680, 600,680)
+  show(screen)
+  
+def solution(screen,randomColor):
+  for x in range(0,6):
+   for y in range(0,1):
+     addOvalFilled(screen, 20+x*60,685+y*60, 50, 50, black)
+     addOvalFilled(screen, 25+x*60,690+y*60, 40, 40, randomColor)

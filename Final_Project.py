@@ -80,3 +80,51 @@ def masterMind():
   
 #Static Call of Main
 masterMind()
+
+
+
+def chose_color():
+
+  wrong=[]
+
+
+#level of difficulty 1
+  while (len(wrong) != 4):
+    userGuess = requestString("Guess a color: ")
+    if userGuess not in colors:
+      wrong.append(userGuess)
+      showInformation("The color you guesses is incorrect, you have used " + str(len(wrong)) + " out of 4 guesses.")
+    else:
+      showInformation("You have guessed the color") 
+    
+    for userGuess in colors:
+      if (userGuess==len(colors)):
+        showInformation("Congratulations you guessed the colors")
+
+#level of difficulty 2
+  while (len(wrong) != 5):
+    userGuess = requestString("Guess a color: ")
+    if userGuess not in colors:
+      wrong.append(userGuess)
+      showInformation("You have used " + str(len(wrong)) + " out of 4 guesses.")
+    else:
+      showInformation("You have guessed the color") 
+    
+    for userGuess in colors:
+      if (userGuess==len(colors)):
+        showInformation("Congratulations you guessed the colors")
+
+#level of difficulty 3
+  while (len(wrong) != 6):
+    userGuess = requestString("Guess a color: ")
+    if userGuess not in colors:
+      wrong.append(userGuess)
+      showInformation("You have used " + str(len(wrong)) + " out of 4 guesses.")
+    else:
+      showInformation("You have guessed the color") 
+    
+    for userGuess in colors:
+      if (userGuess==len(colors)):
+        showInformation("Congratulations you guessed the colors")
+        
+chose_color()

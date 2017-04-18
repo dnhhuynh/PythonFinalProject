@@ -106,7 +106,7 @@ def chose_color():
     userGuess = requestString("Guess a color: ")
     if userGuess not in colors:
       wrong.append(userGuess)
-      showInformation("You have used " + str(len(wrong)) + " out of 5 guesses.")
+      showInformation("The color you guesses is incorrect, you have used " + str(len(wrong)) + " out of 5 guesses.")
     else:
       showInformation("You have guessed the color") 
     
@@ -119,7 +119,7 @@ def chose_color():
     userGuess = requestString("Guess a color: ")
     if userGuess not in colors:
       wrong.append(userGuess)
-      showInformation("You have used " + str(len(wrong)) + " out of 6 guesses.")
+      showInformation("The color you guesses is incorrect, you have used " + str(len(wrong)) + " out of 6 guesses.")
     else:
       showInformation("You have guessed the color") 
     

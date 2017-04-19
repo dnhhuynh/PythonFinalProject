@@ -183,15 +183,27 @@ def masterMind():
   generateMaster(mainCode, numBeads, colors)
   screen = createBoard(numBeads)
   show(screen)
+
   
-  while (endGame == false):  #Norma condition for max round (10) 
-    #Norma's request string #Norma(test string length)
-    fillPeg(screen, round, mainCode)
-    indicators = scoreTurn(rspdCode, mainCode)
-    fillSmallPeg(screen, round, indicators, numBeads)
-    round += 1 
-    #Norma if statement checking the answer, if answer end loop, 
- #Norma if exceded tries, you loose   
-    
-#Static Call of Main
+ while endGame == false and round <10 :
+   round = round+1
+   print('This is your %d guess out of 10'%round)
+   rspdCode = requestString("Guess colors").strip()
+   rspdCode.upper()
+  
+   if round ==10:
+     showInformation ("Sorry you lost :( ")
+     endGame == true
+   
+   if rspdCode in mainCode and rspdCode in colors:
+     continue
+   else:
+     showInformation("Pleace enter 4 colors: 'R' for red, 'G' for green, 'B' for blue, 'W' for white, 'Y' for yellow, and 'P' for purple")
+   
+   for i in range(0,1):
+     print "[%s]" %rspdCode 
+     
+   if rspdCode == mainCode:
+     showInformation(" CongratulationsYou won!!")
+       
 masterMind()

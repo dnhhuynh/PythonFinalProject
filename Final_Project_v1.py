@@ -137,7 +137,7 @@ def scoreTurn(cLst, gLst):
     return scoreStr
 
 #Difficult Option
-def selectDifficult():
+def selectDifficulty():
   difficulty = 0
   acceptable = false
   
@@ -192,7 +192,7 @@ def masterMind():
   #Variables
   mainCode = []                    #List variable to hold master code
   rspdCode = []                    #List variable to hold user response
-  numBeads = selectDifficult()     #Variable to hold number of beads in code
+  numBeads = selectDifficulty()     #Variable to hold number of beads in code
   round = 1
   endGame = false
   

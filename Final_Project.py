@@ -3,7 +3,7 @@ import random
 
 #Global dictionary of colors
 colors = ['R', 'G', 'B', 'W', 'Y', 'P']
-grey = makeColor(192,192,192)
+grey = makeColor(150,150,150)
 purple = makeColor(255, 0, 255)
 
 #Displays the user's guesses
@@ -24,6 +24,8 @@ def fillPeg(screen, round, guess):
       color = purple
     addOvalFilled(screen, 25 + x * 60, row, 40, 40, color)
     
+  repaint(screen)
+    
 #Displays the indicator pegs
 def fillSmallPeg(screen, round, scoreString, difficulty):
   if difficulty == 4:
@@ -39,6 +41,8 @@ def fillSmallPeg(screen, round, scoreString, difficulty):
     if scoreString[x] == 'w':
       color = white
     addOvalFilled(screen, initial + x * 30, row, 15, 15, color)
+    
+  repaint(screen)
 
 #Generates a game board with 4 pegs
 def easyLayout():
@@ -170,11 +174,23 @@ def createBoard(difficulty):
   
   return screen
   
+def userGuess(difficulty):
+  rspdCode = []
+  guessString = requestString("Input your guess for this round: ")
+  
+  while len(guessString) != difficulty:
+    guessString = requestString("Input is invalid. Input your guess for this round: ")
+    
+  for char in range(0, len(guessString)):
+    rspdCode.append(guessString[char].upper())
+  
+  return rspdCode
+  
 #Main Function
 def masterMind():
   #Variables
   mainCode = []                    #List variable to hold master code
-  rspdCode = ''                    #List variable to hold user response
+  rspdCode = []                    #List variable to hold user response
   numBeads = selectDifficult()     #Variable to hold number of beads in code
   round = 1
   endGame = false
@@ -183,27 +199,25 @@ def masterMind():
   generateMaster(mainCode, numBeads, colors)
   screen = createBoard(numBeads)
   show(screen)
-
   
- while endGame == false and round <10 :
-   round = round+1
-   print('This is your %d guess out of 10'%round)
-   rspdCode = requestString("Guess colors").strip()
-   rspdCode.upper()
+  while (endGame == false):
+    rspdCode = userGuess(numBeads)
+    fillPeg(screen, round, rspdCode)
+    indicators = scoreTurn(rspdCode, mainCode)
+    fillSmallPeg(screen, round, indicators, numBeads)
+    round += 1 
+    
+    if indicators == 'gggg' or indicators == 'ggggg' or indicators == 'gggggg':
+      solution(screen, mainCode)
+      repaint(screen)
+      showInformation("You won!")
+      endGame = true
+      
+    if (round > 10 and indicators != 'gggg') or (round > 10 and indicators != 'ggggg') or (round > 10 and indicators != 'gggggg'):
+      solution(screen, mainCode)
+      repaint(screen)
+      showInformation("You failed to guess the master code. You lose!")
+      endGame = true
   
-   if round ==10:
-     showInformation ("Sorry you lost :( ")
-     endGame == true
-   
-   if rspdCode in mainCode and rspdCode in colors:
-     continue
-   else:
-     showInformation("Pleace enter 4 colors: 'R' for red, 'G' for green, 'B' for blue, 'W' for white, 'Y' for yellow, and 'P' for purple")
-   
-   for i in range(0,1):
-     print "[%s]" %rspdCode 
-     
-   if rspdCode == mainCode:
-     showInformation(" CongratulationsYou won!!")
-       
+#Static Call of Main
 masterMind()

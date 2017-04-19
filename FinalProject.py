@@ -61,6 +61,7 @@ def layout(diff):
   screen=makeEmptyPicture(300+100*diff,800,grey)
   pegs = 3 + diff
   for x in range(0,pegs):
+   addText(screen, 50 + x*60, 50, x, white)
    for y in range(0,10):
      addOvalFilled(screen, 20+x*60, 85+y*60, 50, 50, black)
      addOvalFilled(screen, 210 + 60*diff+x*30,100+y*60, 25, 25, black)

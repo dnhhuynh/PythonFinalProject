@@ -60,74 +60,31 @@ def fillPeg(screen, round, guess):
   repaint(screen)
     
 #Displays the indicator pegs
-def fillSmallPeg(screen, round, scoreString, difficulty):
-  if difficulty == 4:
-    initial = 275
-  if difficulty == 5:
-    initial = 345
-  if difficulty == 6:
-    initial = 405
+def fillSmallPeg(screen, round, scoreString, difficulty):  
+  initial = 275 + (difficulty-4)*60
   row = 105 + (round - 1) * 60
   for x in range(0, len(scoreString)):
     if scoreString[x] == 'g':
       color = grey
-      play(correctG)
     if scoreString[x] == 'w':
       color = white
-      play(correctW)
     addOvalFilled(screen, initial + x * 30, row, 15, 15, color)
-
     
   repaint(screen)
 
 #Generates a game board with 4 pegs
-def easyLayout():
-  screen=makeEmptyPicture(400,800,grey)
-  for x in range(0,4):
+def layout(diff):
+  screen=makeEmptyPicture(300+100*diff,800,grey)
+  pegs = 3 + diff
+  text = makeStyle( 'Arial', bold, 30)
+  for x in range(0,pegs):
+   addTextWithStyle(screen, 40+x*60, 70, str(x+1), text, white)
    for y in range(0,10):
      addOvalFilled(screen, 20+x*60, 85+y*60, 50, 50, black)
-     addOvalFilled(screen, 270+x*30,100+y*60, 25, 25, black)
-  addLine(screen, 265, 80, 265, 680)
+     addOvalFilled(screen, 210 + 60*diff+x*30,100+y*60, 25, 25, black)
+  addLine(screen, 205+60*diff, 80, 205+60*diff, 680)
   addLine(screen, 0, 80, 600, 80)
   addLine(screen, 0,680, 600,680)
-  text = makeStyle("Arial",bold,40)
-  text2 = makeStyle("Arial",bold,20)
-  addTextWithStyle(screen, 60, 40,'Mind Control', text, black)
-  addTextWithStyle(screen, 40, 75,'1      2       3      4', text2, white)
-  
-  return screen
-
-#Generates a game board with 5 pegs  
-def mediumLayout():
-  screen=makeEmptyPicture(500,800,grey)  
-  for x in range(0,5):
-   for y in range(0,10):
-     addOvalFilled(screen, 20+x*60,85+y*60, 50, 50, black)
-     addOvalFilled(screen, 340+x*30,100+y*60, 25, 25, black)
-  addLine(screen, 325, 80, 325, 680)
-  addLine(screen, 0, 80, 600, 80)
-  addLine(screen, 0,680, 600,680)
-  text = makeStyle("Arial",bold,40)
-  text2 = makeStyle("Arial",bold,20)
-  addTextWithStyle(screen, 60, 40,'Mind Control', text, black)
-  addTextWithStyle(screen, 40, 75,'1      2       3      4       5', text2, white)
-  
-  return screen
-  
-#Generates a game board with 6 pegs
-def hardLayout(): 
-  screen=makeEmptyPicture(600,800,grey)
-  for x in range(0,6):
-   for y in range(0,10):
-     addOvalFilled(screen, 20+x*60,85+y*60, 50, 50, black)
-     addOvalFilled(screen, 400+x*30,100+y*60, 25, 25, black)
-  addLine(screen, 385, 80, 385, 680)
-  addLine(screen, 0, 80, 600, 80)
-  addLine(screen, 0,680, 600,680)
-  text = makeStyle("Arial",bold,40)
-  text2 = makeStyle("Arial",bold,20)
-  addTextWithStyle(screen, 60, 40,'Mind Control', text, black)
-  addTextWithStyle(screen, 40, 75,'1      2       3      4       5       6', text2, white)
   
   return screen
   

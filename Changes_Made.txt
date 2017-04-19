@@ -1,0 +1,72 @@
+# Time and Sound Functionality for MasterMind:  
+
+#Import
+import random,time
+
+#Timer: 
+start_time = time.time()
+
+#Global sound files: 
+win = makeSound('/home/steven/Desktop/Sounds/Win.wav')
+lose = makeSound('/home/steven/Desktop/Sounds/Lose.wav')
+correctW = makeSound('/home/steven/Desktop/Sounds/correctAnswer.wav')
+correctG = makeSound('/home/steven/Desktop/Sounds/click.wav')
+intro = makeSound('/home/steven/Desktop/Sounds/Introduction.wav')
+
+ADD TO VERY TOP OF PROGRAM
+-------------------------------------------------------------------------
+
+# Call these sound files here: 
+
+# in def fillSmallPeg()
+for x in range(0, len(scoreString)):
+    if scoreString[x] == 'g':
+      color = grey
+*     play(correctG)
+    if scoreString[x] == 'w':
+*     color = white
+      play(correctW) 
+
+
+def createBoard(difficulty):
+  if difficulty == 4:
+*    sound(intro)
+    screen = easyLayout()
+  elif difficulty == 5:
+    screen = mediumLayout()
+*    sound(intro)
+  else:
+    screen = hardLayout()
+*    sound(intro)
+  
+  return screen
+------------------------------------------------------------------------
+# in def masterMind() REPLACE THE LAST TWO IF STATEMENTS WITH THESE: 
+if indicators == 'gggg' or indicators == 'ggggg' or indicators == 'gggggg':
+      solution(screen, mainCode)
+      repaint(screen)
+      sound(win)
+      showInformation("You won!")
+      endGame = true
+      elapsed_time = time.time() - start_time
+      print '\nYou won!! It took you %.2f' % elapsed_time + ' seconds to complete!'
+      
+    if (round > 10 and indicators != 'gggg') or (round > 10 and indicators != 'ggggg') or (round > 10 and indicators != 'gggggg'):
+      solution(screen, mainCode)
+      repaint(screen)
+      sound(lose)
+      showInformation("You failed to guess the master code. You lose!")
+      endGame = true
+      elapsed_time = time.time() - start_time
+      print '\nYou lost! It took you %.2f' % elapsed_time + ' seconds.' 
+# main() and other functions()
+
+def someExitFunction(): 
+	
+	elapsed_time = time.time() - start_time
+	print 'It took you ", elapsed_time, "to complete MasterMind!'
+
+def sound(s): 
+	play(s)
+	
+	

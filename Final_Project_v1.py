@@ -211,14 +211,14 @@ def masterMind():
     fillSmallPeg(screen, round, indicators, numBeads)
     round += 1 
     
-    if indicators == 'gggg' or indicators == 'ggggg' or indicators == 'gggggg':
+    if (indicators == 'gggg' and numBeads == 4) or (indicators == 'ggggg' and numBeads == 5) or (indicators == 'gggggg' and numBeads == 6):
       solution(screen, mainCode)
       repaint(screen)
       play(win)
       endGame = true
       elapsed_time = time.time() - start_time
       showInformation('You won!! It took you %.2f' % elapsed_time + ' seconds to complete!')
-    elif(round > 10 and indicators != 'gggg') or (round > 10 and indicators != 'ggggg') or (round > 10 and indicators != 'gggggg'):
+    elif(round > 10 and indicators != 'gggg' and numBeads == 4) or (round > 10 and indicators != 'ggggg' and numBeads == 5) or (round > 10 and numBeads == 6 and indicators != 'gggggg'):
       solution(screen, mainCode)
       repaint(screen)
       play(lose)
